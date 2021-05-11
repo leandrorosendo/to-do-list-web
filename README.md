@@ -30,3 +30,22 @@ The app is separated in 3 components:
 
 ## Screens
 
+
+### 1. Form  list
+<img src="./img/todolist-screenshot.PNG" height="400" width="500">
+
+### 2. Errors messages - Add Item Exists
+<img src="./img/todolist-screenshot-add-item-existents.PNG" height="400" width="500">
+
+### 3. Errors messages -  Serve PHP off
+<img src="./img/todolist-screenshot-serve-php-off.PNG" height="400" width="500">
+
+### 4. Success messages - Add Item 
+<img src="./img/todolist-screenshot-add-item-success.PNG" height="400" width="500">
+
+### 5. Success message - Done Item
+<img src="./img/todolist-screenshot-done-item-success.PNG" height="400" width="500">
+
+### 6. Errors messages -  Form Required
+<img src="./img/todolist-screenshot-form-required.PNG" height="400" width="500">
+
