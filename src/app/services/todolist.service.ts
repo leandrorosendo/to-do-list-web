@@ -25,7 +25,7 @@ export class TodolistService {
 
   // get all list
   getLista(): Observable<Lists[]> {
-    return this.httpClient.get<Lists[]>(this.url)
+    return this.httpClient.get<Lists[]>(this.url )
       .pipe(
         retry(2),
         catchError(this.handleError))

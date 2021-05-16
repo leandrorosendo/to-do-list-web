@@ -7,14 +7,14 @@ import { TodolistComponent } from './todolist/todolist.component';
 import { FormsModule } from '@angular/forms'
 import { TodolistService } from './services/todolist.service';
 import { HttpClientModule } from "@angular/common/http";
-import { MessagingComponent } from './messaging/messaging.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TodolistComponent,
-    MessagingComponent
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,
