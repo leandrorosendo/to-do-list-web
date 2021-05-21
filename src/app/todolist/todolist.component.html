@@ -1,85 +1,103 @@
-    <app-notifications [message]="message"></app-notifications> 
-    <div class="container">
-        <div class="card list-list">
-            <h5 class="card-header">Lista</h5>
-            <div class="card-body">
-                <table class="table table-sm ">
-                    <thead>
-                        <tr>
-                            <div class="row">
-                                <td  class="col-md-1"></td>
-                                <td  class="col-md-1">Id</td >
-                                <td  class="col-md-2">Id Usuario</td >
-                                <td  class="col-md-4">Descrição</td >
-                                <td  class="col-md-2">Realizado</td >
-                                <td  class="col-md-2">Ações</td >
-                            </div>
-                        </tr>
-                    </thead>
-                    <tbody>
+<app-notifications [message]="message"></app-notifications>
+<div class="container">
+    <div class="card list-list">
+        <h5 class="card-header">Listas</h5>
+        <div class="card-body">
+            <table class="table table-sm ">
 
-                        <tr>
-                            <div [ngClass]="list.fl_realizado === true ? 'row completed': 'row'" *ngFor="let list of lists" >
-                                <td  class="col-md-1 "><input type="checkbox" [checked]="list.fl_realizado" (change)="doneLista(list)" /></td>
-                                <td  class="col-md-1">{{list.id}}</td >
-                                <td  class="col-md-2">{{list.usuario_id}}</td >
-                                <td  class="col-md-4">{{list.ds_lista}}</td>
-                                <td  class="col-md-2"><span [ngClass]="list.fl_realizado === true ? 'badge badge-success': 'badge badge-danger'" >{{list.fl_realizado}}</span>
-                                </td >
-                                <td  class="col-md-2">
-                                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Editar">
-                                    <button type="button" class="btn btn-outline-dark btn-sm" (click)="editLista(list)" >
-                                        <svg id="i-edit" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="18" height="18" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                                            <path d="M30 7 L25 2 5 22 3 29 10 27 Z M21 6 L26 11 Z M5 22 L10 27 Z" />
+                <tbody>
+                    <h3>To-do list: </h3>
+                    <ng-template class="input-group mb-3" *ngFor="let list of lists" [ngIf]="!list.fl_realizado">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <input type="checkbox"  [checked]="list.fl_realizado" (change)="doneLista(list)" >
+                                </div>
+                            </div>
+                            <td class="form-control">{{list.ds_lista}}</td>
+                            <div class="input-group-append" id="button-addon4">
+                                <button (click)="editLista(list)" class="btn btn-success" type="button">
+                                    <svg id="i-edit" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="18"
+                                        height="18" fill="none" stroke="currentcolor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2">
+                                        <path d="M30 7 L25 2 5 22 3 29 10 27 Z M21 6 L26 11 Z M5 22 L10 27 Z" />
+                                    </svg>
+                                </button>
+                                <button (click)="deleteLista(list)" class="btn btn-danger" type="button">
+                                    <svg id="i-trash" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="18"
+                                        height="18" fill="none" stroke="currentcolor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2">
+                                        <path
+                                            d="M28 6 L6 6 8 30 24 30 26 6 4 6 M16 12 L16 24 M21 12 L20 24 M11 12 L12 24 M12 6 L13 2 19 2 20 6" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </ng-template>
+
+                    <div class="todo-list my-5">
+                        <h3>Completa To-do(s): </h3>
+                        <ng-template class="input-group mb-3" *ngFor="let list of lists" [ngIf]="list.fl_realizado">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <input type="checkbox"  [checked]="list.fl_realizado" (change)="doneLista(list)" >
+                                    </div>
+                                </div>
+                                <td class="form-control desable">{{list.ds_lista}}</td>
+
+                                <div class="input-group-append" id="button-addon4">
+                                    <button (click)="deleteLista(list)" class="btn btn-danger" type="button">
+                                        <svg id="i-trash" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
+                                            width="18" height="18" fill="none" stroke="currentcolor"
+                                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                            <path
+                                                d="M28 6 L6 6 8 30 24 30 26 6 4 6 M16 12 L16 24 M21 12 L20 24 M11 12 L12 24 M12 6 L13 2 19 2 20 6" />
                                         </svg>
                                     </button>
-                                    </span>
-                                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Excluir">
-                                    <button type="button" class="btn btn-outline-dark btn-sm ml-1" (click)="deleteLista(list)">
-                                        <svg id="i-trash" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="18" height="18" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                                        <path d="M28 6 L6 6 8 30 24 30 26 6 4 6 M16 12 L16 24 M21 12 L20 24 M11 12 L12 24 M12 6 L13 2 19 2 20 6" />
-                                    </svg></button>
-                                    </span>
-                                </td >
+                                </div>
                             </div>
-                        </tr>
+                        </ng-template>
+                    </div>
+                    
 
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="card add-list">
-            <h5 class="card-header">Adicionar/Atualizar Lista</h5>
-            <div class="card-body">
-                <form id="add-form" (ngSubmit)="f.form.valid && saveLista(f)" #f="ngForm" novalidate>
-                    <div class="form-group">
-                        <label for="ds_lista">Descrição</label>
-                        <input type="text" [(ngModel)]="list.ds_lista" id="ds_lista" name="ds_lista" #ds_lista="ngModel"
-                            required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && ds_lista.invalid }"
-                            placeholder="Digite uma descrição"  maxlength="250" >
-                        <div *ngIf="f.submitted && ds_lista.invalid" class="invalid-feedback">
-                            <div *ngIf="ds_lista?.errors?.required">Descrição é obrigatório</div>
-                            <div *ngIf="ds_lista?.errors?.maxlength">Permitido somente 25 caracteres</div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="usuario_id">Id usuário</label>
-                        <input type="number" [(ngModel)]="list.usuario_id" id="usuario_id" name="usuario_id"
-                            #usuario_id="ngModel" required class="form-control"  [ngClass]="{ 'is-invalid': f.submitted && usuario_id.invalid }" 
-                            placeholder="Digite um Id de usuário"  >
-                        <div *ngIf="f.submitted && usuario_id.invalid" class="invalid-feedback">
-                                <div *ngIf="usuario_id?.errors?.required">Id usuário é obrigatório</div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div> <label for="fl_realizado">Realizado</label></div>
-                        <input type="checkbox" id="fl_realizado" name="fl_realizado" [(ngModel)]="list.fl_realizado"  #fl_realizado="ngModel"  />
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-add-list">Salvar</button>
-                    <button type="button" class="btn btn-secondary btn-add-list" (click)="cleanForm(f)">Cancelar</button>
-                </form>
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
-    
+
+    <div class="card add-list">
+        <h5 class="card-header">Adicionar/Atualizar Lista</h5>
+        <div class="card-body">
+            <form id="add-form" (ngSubmit)="f.form.valid && saveLista(f)" #f="ngForm" novalidate>
+                <div class="form-group">
+                    <label for="ds_lista">Descrição</label>
+                    <input type="text" [(ngModel)]="list.ds_lista" id="ds_lista" name="ds_lista" #ds_lista="ngModel"
+                        required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && ds_lista.invalid }"
+                        placeholder="Digite uma descrição" maxlength="250">
+                    <div *ngIf="f.submitted && ds_lista.invalid" class="invalid-feedback">
+                        <div *ngIf="ds_lista?.errors?.required">Descrição é obrigatório</div>
+                        <div *ngIf="ds_lista?.errors?.maxlength">Permitido somente 25 caracteres</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="usuario_id">Id usuário</label>
+                    <input type="number" [(ngModel)]="list.usuario_id" id="usuario_id" name="usuario_id"
+                        #usuario_id="ngModel" required class="form-control"
+                        [ngClass]="{ 'is-invalid': f.submitted && usuario_id.invalid }"
+                        placeholder="Digite um Id de usuário">
+                    <div *ngIf="f.submitted && usuario_id.invalid" class="invalid-feedback">
+                        <div *ngIf="usuario_id?.errors?.required">Id usuário é obrigatório</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div> <label for="fl_realizado">Realizado</label></div>
+                    <input type="checkbox" id="fl_realizado" name="fl_realizado" [(ngModel)]="list.fl_realizado"
+                        #fl_realizado="ngModel" />
+                </div>
+                <button type="submit" class="btn btn-primary btn-add-list">Salvar</button>
+                <button type="button" class="btn btn-secondary btn-add-list" (click)="cleanForm(f)">Cancelar</button>
+            </form>
+        </div>
+    </div>
+</div>

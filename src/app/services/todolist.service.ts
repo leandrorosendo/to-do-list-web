@@ -86,15 +86,7 @@ export class TodolistService {
       errorMessage = error.error.message;
     } else {
       // Erro side server
- 
-      if (error.status === 422) {
-        let Keys = Object.keys(error.error.errors);
-        let Mensagens: any = [];
-        Keys.forEach((key) => Mensagens.push(error.error.errors[key][0]), this);
-        errorMessage = { status: error.status, erro: error.error.message, mensagem: Mensagens };
-      } else {
-        errorMessage = { status: error.status, erro: error.error.message, mensagem: error.error.errors };
-      }
+      errorMessage = error;
     }
 
     return throwError(errorMessage);

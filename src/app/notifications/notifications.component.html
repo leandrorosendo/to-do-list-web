@@ -1,10 +1,6 @@
-<div class="alert alert-{{class}}">
-    <div *ngIf="erratrib === false">
-        <strong>{{text}}</strong>
-    </div>
-    <div *ngIf="erratrib === true">
-        <li *ngFor="let mensagem of message?.mensagem ">
-            {{mensagem}}
-        </li>
-    </div>
+<div class="alert alert-{{messages.class}}">
+    <strong>{{messages.text}}</strong>
+    <li *ngFor="let mensagem of messages.erros ">
+        {{mensagem}}
+    </li>
 </div>

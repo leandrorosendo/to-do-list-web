@@ -18,3 +18,8 @@
     text-decoration: line-through;
     color: crimson;
 }
+
+.desable{
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+}
